@@ -157,13 +157,8 @@ void Operate::display(int r,int c) {
 	}
 }
 int Operate::end(int r, int c) {
-	for (int i = 0; i < r; i++) {
-		for (int j = 0; j < c; j++) {
-			if (map[i][j] == 2) {
-				return 1;
-			}
-		}
-	}
+	for (int i = 0; i < count; i++)
+		if (map[J[i].m][J[i].n] == 2) return 1;
 	return 0;
 }
 
