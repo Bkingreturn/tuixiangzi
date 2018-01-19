@@ -178,19 +178,22 @@ int main()
 		{ 0,0,0,0,0,0,0,0,0,0 },//9
 	};
 	int map2[10][10] = {
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,0,1,1,0,0,1,1},
-		{1,0,3,0,0,0,0,3,1,1},
-		{1,0,0,1,1,1,0,0,1,1},
-		{1,0,1,1,1,1,1,1,1,1},
-		{1,0,1,2,2,2,1,0,1,1},
-		{1,0,0,0,0,3,0,0,0,1},
-		{1,0,0,1,0,0,4,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1},
+		{0,0,0,0,1,1,1,1,0,0},
+		{0,0,1,1,1,0,0,1,0,0},
+		{0,0,1,0,0,0,0,1,0,0},
+		{0,1,1,0,1,0,1,1,1,0},
+		{0,1,0,0,1,3,0,2,1,0},
+		{0,1,0,1,4,0,3,2,1,0},
+		{0,1,0,0,0,0,0,3,1,0},
+		{0,1,1,1,1,1,1,1,1,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
 	};
 	int chioces;
 	Operate op(map1, 10, 10);
+	Operate op2(map1, 10, 10);
 	Operate op1(map2, 10, 10);
+	Operate op3(map2, 10, 10);
 	char ch;
 	do {
 		cout << "-------主菜单-------" << endl;
@@ -213,9 +216,9 @@ int main()
 					op.display(10, 10);
 					op.Find(10,10);
 					do
-					{
-					    ch = _getch();
+					{   ch = _getch();
 						ch = _getch();
+						cout << "重新开始请双按ESC键。" << endl;
 						switch (ch)
 						{
 						case 72:
@@ -234,11 +237,17 @@ int main()
 							op.down();
 							op.display(10, 10);
 							break;
+						case 27:
+							op2.display(10, 10);
+							op2.Find(10, 10);
+							op = op2;
+							break;
 						default:
 							break;
 						}
 					} while(op.end(10,10)==1);
-					if (!op.end(10, 10)) cout << "游戏结束！" << endl;
+					if (!op.end(10, 10)) cout << "恭喜你闯关成功！" << endl;
+					op = op2;
 					break;
 				case 2:
 					op1.display(10, 10);
@@ -247,6 +256,7 @@ int main()
 					{
 						ch = _getch();
 						ch = _getch();
+						cout << "重新开始请双按ESC键。" << endl;
 						switch (ch)
 						{
 						case 72:
@@ -265,11 +275,16 @@ int main()
 							op1.down();
 							op1.display(10, 10);
 							break;
+						case 27:
+							op3.display(10, 10);
+							op3.Find(10, 10);
+							op1 = op3;
 						default:
 							break;
 						}
 					} while (op1.end(10, 10) == 1);
-					if (!op1.end(10, 10)) cout << "游戏结束！" << endl;
+					if (!op1.end(10, 10)) cout << "恭喜闯关成功！" << endl;
+					op1 = op3;
 					break;
 				case 3:
 					break;
